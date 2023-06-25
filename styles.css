@@ -1,13 +1,18 @@
 body{
     background-color: rgb(196, 196, 245);
 }
+.main{
+    display: grid;
+    justify-content: center;
+}
 .container{
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(8, 1fr);
     width: max(50vw,50vh);
     height: max(50vw,50vh);
-    margin-left: max(25vw,25vh);
+    justify-self: center;
+    align-self: center;
     border: 1px solid black;
 }
 .container>div{
@@ -32,20 +37,26 @@ body{
     align-self: center;
 }
 .header{
-    font-size: 60px;
+    display: grid;
+    justify-content: center;
+    font-size: max(5vw,20pt);
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
     text-align:center;
     margin: 25px;
-
-
 }
 
 .para{
+    display: grid;
+    justify-self: center;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20pt;
-    margin-left: max(25vw,25vh);
-    margin-right: max(25vw,25vh);
+    font-size: max(2vw,12pt);
+  
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.para>div{
+    width: max(50vw,50vh);
 }
