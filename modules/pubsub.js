@@ -26,9 +26,3 @@
 function testFunc(test){
     console.log(test)
 }
-
-// ps = pubSub();
-
-// ps.subscribe('test-func',testFunc)
-
-// ps.publish('test-func',"my test")

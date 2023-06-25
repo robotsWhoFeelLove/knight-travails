@@ -1,4 +1,3 @@
-import {pubSub} from './pubsub.js'
 
 export const buildBoard = (a) => {
     let board = []
@@ -25,9 +24,19 @@ export const showBoard = () => {
     const div = document.createElement("div")
         div.id = `space-${el[0]}${el[1]}`
        
-        if((el[0]+el[1])%2 == 0) div.classList.add("black-space")
+        if((el[0]+el[1])%2 == 0) {
+            div.classList.add("black-space")
+        }else {
+            div.classList.add("white-space")
+        }
+
     document.querySelector(".container").appendChild(div)
-    })
+
+    
+    
+});
+
+    
 
     let knight = Knight([0,0]);
     const div = document.createElement('div');
@@ -35,7 +44,6 @@ export const showBoard = () => {
     
     document.querySelector(`#space-${knight.pos[0]}${knight.pos[1]}`).appendChild(div)
 }
-// showBoard()
 
 export function moveKnightPiece(moveArr){
 
