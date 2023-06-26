@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(196, 196, 245);
+    background-color: whitesmoke;
 }
 .main{
     display: grid;
@@ -14,10 +14,19 @@ body{
     justify-self: center;
     align-self: center;
     border: 1px solid black;
+    box-shadow: 25px 25px 5px rgba(0,0,0,0.16);
 }
 .container>div{
-   
     display: grid;
+}
+.black-space,
+.white-space{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: max(3vw,3vh);
+    justify-content: center;
+    align-content: center;
+    color: #dd3311;
+    font-weight: 700;
 }
 .black-space{
     background-color: black;
@@ -28,23 +37,30 @@ body{
 
 #knight{
     z-index: 1;
-    height: 50%;
-    width: 50%;
-    border-radius: 50%;
-    border: 5px solid black;
-    background-color: white;
+    height: max(6vw,6vh);
+    width: max(6vw,6vh);
     justify-self: center;
     align-self: center;
+    position: absolute;
+    background-image: url('./assets/knight.svg');
+    background-size:cover;
+    background-repeat: no-repeat;
 }
 .header{
+    color: #0077cc;
     display: grid;
     justify-content: center;
-    font-size: max(5vw,20pt);
+    font-size: max(9vw,37pt);
     font-family: 'Courier New', Courier, monospace;
     font-weight: 700;
     text-align:center;
     margin: 25px;
+    initial-letter: 3;
 }
+
+/* .header:first-letter{
+    font-size: max(10vw,40pt);
+} */
 
 .para{
     display: grid;

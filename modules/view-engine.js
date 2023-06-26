@@ -46,20 +46,7 @@ export const showBoard = () => {
     document.querySelector(`#space-${knight.pos[0]}${knight.pos[1]}`).appendChild(div)
 }
 
-export function moveKnightPiece(moveArr){
 
-    if(!moveArr.length) return pubSub.publish('move-completed');
-    else {
-    const move = moveArr.pop()
-            const space = document.querySelector(`#space-${move[0]}${move[1]}`)
-        const knight = document.querySelector("#knight")
-        space.appendChild(knight);
-    return setTimeout(()=>{
-        console.log({move})
-        moveKnightPiece(moveArr)},
-    500)
-    }
-}
 
 
 

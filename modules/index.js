@@ -12,6 +12,8 @@ ps.subscribe('knight-move',testFunc)
 ps.subscribe('choose-dest',findShortest)
 ps.subscribe('choose-dest',addFlag)
 ps.subscribe('move-completed',removeFlag)
+ps.subscribe("move-completed",removePath)
+ps.subscribe("knight-move",showPath)
 
 function testFunc(test){
     console.log(test)
@@ -158,6 +160,7 @@ function showPath(moveArr){
 
         const space = document.querySelector(`#space-${move[0]}${move[1]}`)
         space.classList.add("pulse")
+        space.textContent = (moveArr.length - moveArr.indexOf(move))
     });
 }
 
@@ -165,8 +168,7 @@ function removePath(){
     const pulseList = document.querySelectorAll(".pulse")
     pulseList.forEach((pulse)=> {
         pulse.classList.remove("pulse")
+        pulse.innerHTML = pulse.innerHTML.replace(/[0-9]/g, "")
     }
 )}
 
-ps.subscribe("move-completed",removePath)
-ps.subscribe("knight-move",showPath)
