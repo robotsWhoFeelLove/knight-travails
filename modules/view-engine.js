@@ -3,12 +3,12 @@ import { pubSub } from "./pubsub.js"
 export const buildBoard = (a) => {
     let board = []
     for(let j = 0; j < 8; j ++){
-    for (let i = 0; i < 8 ; i++){
-        let arr = [j,i]
-        board.push(arr)
-    }
+        for (let i = 0; i < 8 ; i++){
+            let arr = [j,i]
+            board.push(arr)
+        }
 }
-console.log(board)
+// console.log(board)
 return board
 } 
 
@@ -32,12 +32,8 @@ export const showBoard = () => {
         }
 
     document.querySelector(".container").appendChild(div)
-
-    
-    
-});
-
-    
+   
+    });
 
     let knight = Knight([0,0]);
     const div = document.createElement('div');

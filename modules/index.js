@@ -57,15 +57,16 @@ function findShortest(destNode,n=8){
 
     while (moveQueue){
         let node = moveQueue.shift();
-        console.log({node})
-        console.log({moveQueue});
+        // console.log({node})
+        // console.log({moveQueue});
 
         let x = node.x
         let y = node.y
         let dist = node.dist
 
         if(x == dest.x && y == dest.y){
-
+            console.log(`Path found \nTotal Moves queued: ${moveQueue.length+visitedNodes.length} \nAttempted Moves: ${visitedNodes.length}`)
+                ps.publish('checked-moves',visitedNodes)
             let knightMoves = []
             knightMoves.push([node.x,node.y]);
             function findPath(node){
@@ -86,19 +87,19 @@ function findShortest(destNode,n=8){
         if(!inArr(visitedNodes,node.x,node.y)){
             visitedNodes.push([node.x,node.y])
 
-        for (let i = 0; i < 8; i ++){
-            let x1 = x + row[i];
-            let y1 = y + col[i];
+            for (let i = 0; i < 8; i ++){
+                let x1 = x + row[i];
+                let y1 = y + col[i];
 
-            if(testMove(x1,y1)){
-                let newNode = Node(x1,y1,node);
-                newNode.dist = node.dist +1
-                moveQueue.push(newNode)
+                if(testMove(x1,y1,n)){
+                    let newNode = Node(x1,y1,node);
+                    newNode.dist = node.dist +1
+                    moveQueue.push(newNode)
+                }
             }
         }
-        }
             
-        }
+    }
 
 }
 
