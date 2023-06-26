@@ -142,7 +142,7 @@ function moveKnightPiece(moveArr){
     if(!moveArr.length) return ps.publish('move-completed');
     else {
     const move = moveArr.pop()
-            const space = document.querySelector(`#space-${move[0]}${move[1]}`)
+        const space = document.querySelector(`#space-${move[0]}${move[1]}`)
         const knight = document.querySelector("#knight")
         space.appendChild(knight);
     return setTimeout(()=>{
@@ -151,3 +151,22 @@ function moveKnightPiece(moveArr){
     500)
     }
 }
+
+function showPath(moveArr){
+
+    moveArr.forEach((move)=>{
+
+        const space = document.querySelector(`#space-${move[0]}${move[1]}`)
+        space.classList.add("pulse")
+    });
+}
+
+function removePath(){
+    const pulseList = document.querySelectorAll(".pulse")
+    pulseList.forEach((pulse)=> {
+        pulse.classList.remove("pulse")
+    }
+)}
+
+ps.subscribe("move-completed",removePath)
+ps.subscribe("knight-move",showPath)
