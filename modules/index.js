@@ -1,4 +1,4 @@
-import {showBoard,moveKnightPiece} from './view-engine.js'
+import {showBoard} from './view-engine.js'
 import {pubSub} from './pubsub.js'
 
 showBoard()
@@ -10,6 +10,8 @@ const ps = pubSub()
 ps.subscribe('knight-move',moveKnightPiece)
 ps.subscribe('knight-move',testFunc)
 ps.subscribe('choose-dest',findShortest)
+ps.subscribe('choose-dest',addFlag)
+ps.subscribe('move-completed',removeFlag)
 
 function testFunc(test){
     console.log(test)
@@ -102,12 +104,25 @@ function inArr(someArr,nested1,nested2){
     return !!someArr.find(el=>el[0]== nested1 && el[1] == nested2)
 }
 
+const wrapper = document.querySelector(".container")
 
-document.querySelector(".container").addEventListener("click",(e)=>{
+wrapper.addEventListener("click",(e)=>
     handleMove(e)
-});
+);
+
+let moveFlag = true
+
+function addFlag(){
+    moveFlag = false
+}
+function removeFlag(){
+    moveFlag = true
+}
+
+
 
 function handleMove(e){
+    if(!moveFlag)return;
     console.log(e.target)
     let x = e.target.id.substr(e.target.id.length-2,1)
     let y = e.target.id.substr(e.target.id.length-1,1)
@@ -121,3 +136,18 @@ function chooseTest(arg,arg2){
 }
 
 ps.subscribe('choose-test',chooseTest)
+
+function moveKnightPiece(moveArr){
+
+    if(!moveArr.length) return ps.publish('move-completed');
+    else {
+    const move = moveArr.pop()
+            const space = document.querySelector(`#space-${move[0]}${move[1]}`)
+        const knight = document.querySelector("#knight")
+        space.appendChild(knight);
+    return setTimeout(()=>{
+        console.log({move})
+        moveKnightPiece(moveArr)},
+    500)
+    }
+}

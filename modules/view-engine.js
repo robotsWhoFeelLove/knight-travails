@@ -1,3 +1,4 @@
+import { pubSub } from "./pubsub.js"
 
 export const buildBoard = (a) => {
     let board = []
@@ -47,18 +48,19 @@ export const showBoard = () => {
 
 export function moveKnightPiece(moveArr){
 
-    if(!moveArr.length) return;
+    if(!moveArr.length) return pubSub.publish('move-completed');
     else {
     const move = moveArr.pop()
-    return setTimeout(()=>{
-        console.log({move})
-        const space = document.querySelector(`#space-${move[0]}${move[1]}`)
+            const space = document.querySelector(`#space-${move[0]}${move[1]}`)
         const knight = document.querySelector("#knight")
         space.appendChild(knight);
+    return setTimeout(()=>{
+        console.log({move})
         moveKnightPiece(moveArr)},
-    700)
+    500)
     }
 }
+
 
 
 
